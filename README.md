@@ -1,93 +1,114 @@
-# OpenInference Lab
-### AI-assisted building, independent verification, traceable inference, and human decisions
+<p align="center">
+  <img src="assets/openinference-logo.png" alt="OpenInference Lab logo" width="350">
+</p>
 
-**An educational open-source prototype. No proprietary code or design from Dragon/Sentience is used.**
+<h1 align="center">OpenInference Lab</h1>
 
-**Question:** If generative AI can build an inference system, how does a technically educated engineer establish whether the system's inputs, reasoning, decisions, and conclusions deserve trust?
+<p align="center">
+  <strong>Build an inference system. Challenge its evidence. Verify its decisions.</strong><br>
+  A hands-on laboratory in AI-native data science and trustworthy computational reasoning.
+</p>
 
-## Quick start (Python 3.10+, no pip dependencies)
+<p align="center">
+  <a href="book/AI-Native-Data-Scientist.pdf">Read the companion booklet</a> ·
+  <a href="STUDENT_LAB.md">Follow the learning lab</a> ·
+  <a href="reports/index.html">Explore the dashboard source</a>
+</p>
 
-```bash
+Why this project exists
+AI coding assistants can now implement substantial software remarkably quickly. That changes the work of the data scientist and engineer: producing code is only part of the job; establishing what the code's conclusions mean, and whether they can be trusted, is the harder part.
+
+OpenInference Lab is a small, inspectable example of that process. It takes public observations, validates their integrity, constructs explicit relationships, recommends items for human review, and independently checks the results. A visual dashboard exposes the evidence behind each recommendation. Deliberately damaged input demonstrates how a plausible-looking answer can go wrong.
+
+The goal is to learn a repeatable engineering discipline:
+
+Observe → Validate → Infer → Decide → Verify → Explain → Revise
+
+No machine-learning or AI API is required to run the core example. AI is an optional collaborator in building, reviewing, and challenging the system—not the source of truth.
+See it in action
+<p align="center">
+  <img src="reports/dashboard-preview.png" alt="OpenInference Lab dashboard showing an evidence graph, event timeline and integrity checks" width="880">
+</p>
+
+The dashboard lets you inspect a record's source information, inferred links, decision, and audit trail, then switch between a clean dataset and a deliberately compromised one.
+A reproducible experiment
+The included dataset is a frozen 15-record selection from the public USGS earthquake feed. It is deliberately small, static, and not representative; it is used to study inference and verification, not seismology or earthquake forecasting.
+Scenario	Input records	Quarantined	Candidate groups	Independent audit
+Baseline	15	0	1	PASS
+Deliberately compromised	16	5	1	PASS
+
+
+The compromised scenario introduces three corrupted records and one fabricated record. A possible-duplicate finding causes an additional original record to be quarantined. An audit PASS means the implemented invariants hold for the report; it does not certify the scientific truth of every observation.
+Quick start
+Requirements: Python 3.10 or newer. The baseline application uses only the Python standard library—no installation of packages, credentials, or running server is needed.
+# From the repository root
 python -m openinference.demo
 python -m unittest discover -s tests -v
+Open reports/index.html in your browser. Choose Baseline or Adversarial to compare the two scenarios. The generated dashboard is a standalone HTML file.
+
+The repository includes 20 automated tests. You can also use make demo and make test if Make is installed.
+How the inference pipeline works
+```mermaid
+flowchart TD
+    A[Public observations] --> B[Schema and snapshot checks]
+    B -->|Valid records| C[Spatial-temporal inference]
+    B -->|Suspicious records| Q[Quarantine and data review]
+    C --> D[Candidate relationship graph]
+    D --> E[Explainable human-review decisions]
+    E --> V[Independent verification]
+    Q --> V
+    V --> F[Interactive evidence dashboard]
 ```
+The implementation deliberately separates facts from interpretation:
+1. Validate observations. Check coordinates, timestamps, source-field consistency, duplicate reports, and SHA-256 hashes against a frozen manifest. A hash protects consistency relative to that manifest; it is not proof that the source was authentic.
+2. Infer relationships. Link two accepted events when they occur within 100 km and 24 hours. The resulting graph identifies candidates for investigation, not causal relationships.
+3. Make review decisions. Assign CHECK_DATA, INVESTIGATE_PATTERN, VERIFY_LARGE_RECORD, or MONITOR using explicit, inspectable rules. These are workflow labels, not earthquake-risk classifications.
+4. Verify independently. A separate module recomputes distances using a different formula, looks for unsupported and missing links, checks source-result consistency and evidence references, and tests decision rules.
+5. Make the reasoning visible. Explore the source facts, inferred links, timestamps, explanations, and failed integrity checks in the browser dashboard.
+Key files:
+Path	Purpose
+data/usgs_snapshot.json	Frozen public-data sample
+data/source_manifest.json	Baseline hashes and source metadata
+openinference/core.py	Validation, graph construction, and decision rules
+openinference/verify.py	Independent result and structured-claim auditing
+openinference/demo.py	Clean/adversarial runs and report generation
+openinference/ui.py	Standalone evidence dashboard
+openinference/llm.py	Optional LLM reviewer and factual-claim checks
+tests/test_lab.py	Regression and integrity tests
 
-Open `reports/index.html` in your browser. Select **Baseline** and **Adversarial**. Click events, provenance graphs, and integrity exceptions. The dashboard runs locally from a static file; no server or online dependencies. Optional model interface is described below.
 
-The repo includes a frozen **15-event** genuine USGS sample drawn from the public magnitude 4.5+ weekly GeoJSON feed observed October 29, 2026. The source feed had **186 records** at capture. This is a **convenience selection, not a representative sample**. All original event fields, identifiers, and source timestamps used in this exercise can be traced to USGS public records; the manifest freezes selected field values. The independent-check scenario then **deliberately corrupts three existing source records and fabricates one report** (which also causes a near-duplicate flag on the original), labeling these edits as lab fixtures.
+Companion booklet
+The AI-Native Data Scientist: Building, Testing, and Trusting Inference Systems
+Mirco A. Mannucci · 37 pages · October 2026
 
-Source & schema: [USGS feed](https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson), [GeoJSON summary documentation](https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php), [USGS licensing guidance](https://www.usgs.gov/data-management/data-licensing).
+[Read the illustrated booklet (PDF)](book/AI-Native-Data-Scientist.pdf) · [LaTeX manuscript](book/main.tex) · [Six-session student lab](STUDENT_LAB.md)
 
-## What the application actually does
+The booklet and code are meant to be studied together. Instead of presenting AI as a shortcut around mathematics or scientific reasoning, the book develops the skills needed to direct AI-assisted work and detect its failures:
+- Evidence and uncertainty: what is observed, inferred, assumed, or unknown.
+- Data integrity and provenance: invalid values, duplicates, tampering, lineage, and source limitations.
+- Graph inference and decisions: proximity rules, connected components, decision policies, and the difference between association and causation.
+- Independent verification: separate correctness oracles, adversarial cases, missing links, and the limits of passing tests.
+- AI-native workflows: delegate implementation and candidate critiques to AI while independently checking factual claims.
+- Visualization and changing evidence: make reasoning inspectable and understand what must be reconsidered when observations change.
+Each chapter connects theory to executable experiments. The final assignment is to audit and improve the inference system, not merely get its code running.
 
-1. **Ingest and fingerprint.** A frozen selected record set has a baseline SHA-256 checksum manifest over fixed fields. Checksums detect changes *relative to this frozen reference*, not whether the reference was ever true or signed by USGS.
-2. **Check data.** Test coordinate ranges, magnitude, timestamps, update ordering, candidate duplicates, and comparison against the manifest. Suspect records are quarantined, not used as inputs for spatial inference.
-3. **Construct relationships.** Two events are connected when within **100 km and 24 hours**. Connected components are exploratory groups, *not* evidence of physical causation or aftershock status.
-4. **Recommend actions.** Only queue a human for `CHECK_DATA`, `INVESTIGATE_PATTERN`, or `VERIFY_LARGE_RECORD`; otherwise `MONITOR`. The 6.0 threshold is purely a demonstration rule, not a hazard score.
-5. **Audit independently.** `openinference/verify.py` recomputes geometry using a different formula, detects missing/fabricated edges, checks referential integrity and source-result hashes, and confirms decision-rule consistency.
-6. **Visualize the work.** A standalone dashboard provides a coordinate plot, observation timeline, selected record facts, provenance graph, decision explanations, and audit summaries.
-7. **Challenge with an LLM (optional).** An independent Claude reviewer can propose a structured criticism; factual claims are then checked against source records. No AI answer is accepted as its own proof.
-
-```
-USGS public events ──> schema + frozen hash verification ──> validated evidence
-                                │                         │
-                                └─> quarantine           v
-                                        spatiotemporal rules
-                                                 │
-                                  candidate relationship graph
-                                                 │
-                                     human-review decisions
-                                                 │
-                             independent mathematical verifier
-                                                 │
-                              interactive investigation console
-```
-
-### Local optional model review
-
-Create an evidence-only prompt packet **offline**:
-
-```bash
+To rebuild the PDF, install XeLaTeX and the TeX Gyre fonts, then run:
+make book
+Work with an AI reviewer (optional)
+Generate a review prompt locally, without contacting an AI provider:
 python -m openinference.llm --id us7000ttw3
-```
-
-Explicitly call Claude when you have an account and select an available model:
-
-```bash
-export ANTHROPIC_API_KEY='YOUR_KEY'    # never commit this value
-export ANTHROPIC_MODEL='A_MODEL_YOU_HAVE_ACCESS_TO'
+To request a live review from Claude, set ANTHROPIC_API_KEY and ANTHROPIC_MODEL in your environment and run:
 python -m openinference.llm --id us7000ttw3 --call-claude
-```
+This step is opt-in, requires provider access, and may incur charges. The reviewer returns structured claims; the code checks their referenced IDs and factual values. It cannot mechanically prove an unrestricted natural-language explanation. Never commit API keys.
+Further experiments
+The lab is intended to be modified. Try changing the proximity thresholds, adding uncertain or contradictory records, deleting an expected graph edge, or changing a decision after the fact. Predict what should happen before rerunning the independent tests. See [`STUDENT_LAB.md`](STUDENT_LAB.md) and [`prompts/ai_workflow.md`](prompts/ai_workflow.md) for guided tasks and AI-assistance protocols.
 
-This call may incur provider charges. The model must return structured JSON (`event_id`, `proposed_decision`, `cited_event_ids`, `factual_claims`, `explanation`, `limitations`). The independent structured verifier checks IDs, values and decision agreement, then saves the results. It **cannot verify arbitrary natural-language reasoning**; such claims need further human scrutiny or independent experiments.
-
-Optional live ingestion (requires network):
-
-```bash
+For a fresh USGS download (requires internet access):
 python -m openinference.demo --fetch-live
-```
+This writes reports/live_download.json. It does not replace the frozen benchmark or validate the new records against the original manifest.
+Data sources, scope, and limitations
+The example uses public USGS GeoJSON earthquake data, documented in the USGS feed specification. See also USGS data-licensing guidance.
 
-Downloads up to 60 current USGS events into `reports/live_download.json`, **without replacing or claiming equivalence to the frozen benchmark**. The live dataset is intentionally not validated against the frozen hashes. A production system would need its own snapshot versioning, source authentication and update policy.
+This is an educational software laboratory, not a USGS product, earthquake forecasting tool, or public-safety decision service. Its relationship rules are illustrative, the sample is too small to support statistical generalizations, and the evidence-quality indicators are heuristic—not calibrated probabilities. Independent code checks can find implementation inconsistencies, but establishing scientific validity also requires external ground truth and domain review.
 
-## Intended learning outcomes
-
-- Distinguish observation, inference, decision, and unverified hypothesis.
-- Understand source integrity vs. schema validation vs. scientific truth.
-- Identify missingness, duplication, changed records, identity and provenance failures.
-- Explain why the verifier should not merely ask the same model whether its own answer is right.
-- Model data lineage and produce readable visual explanations of model decisions.
-- Use coding assistants for construction and adversarial brainstorming, with independent executable tests and controlled human review.
-- Compare baseline and deliberately compromised cases without confusing synthetic failures for genuine public events.
-
-## Limitations (read these)
-
-- **Not a USGS product; not earthquake prediction; not a public-safety decision service.** Correlation is not causation.
-- The dataset is deliberately small, biased and static; outcomes do not estimate real-world error rates or model calibration.
-- The field-range checks are intentionally coarse; proper domain validation must reflect source conventions and catalog updates.
-- A checksum is not a digital signature; the manifest itself can be changed. Production requires trusted signing/attestation and secure source management.
-- A `PASS` means the coded invariants held; it does **not** mean seismic claims are true, complete or unbiased.
-- Evidence quality numbers in the demo are **heuristic quality indicators, not calibrated probabilities**.
-- The independent verifier shares some specifications with the builder. For stronger assurance, use external ground truth, separately authored test oracles, metamorphic tests, and human-domain review.
-- Source locations are plotted as points on a coordinate grid, not a hazard, impact or geographic-reference map.
-
-See `STUDENT_LAB.md` and `prompts/ai_workflow.md` for a teaching curriculum.
+License: A redistribution license for the repository's original code and booklet has not yet been selected. Do not assume reuse permissions from the repository's visibility; the underlying USGS data is governed by its own terms.
