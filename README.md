@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/OpenInferenceLab-Logo.png" alt="OpenInference Lab logo" width="550">
+  <img src="assets/openinference-logo.png" alt="OpenInference Lab logo" width="350">
 </p>
 
 <h1 align="center">OpenInference Lab</h1>
@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <a href="book/AI-Native-Data-Scientist.pdf">Read the companion booklet</a> ·
+  <a href="https://www.researchgate.net/publication/417153372_HIGHER_MATH_FOR_THE_IMPATIENT_PRACTICAL_LAB_THE_AI-NATIVE_DATA_SCIENTIST_Building_Testing_and_Trusting_Inference_Systems_DATA_INFERENCE_ACTION_INDEPENDENT_AUDIT_Working_educational_edition_October_202">Read the companion booklet on ResearchGate</a> ·
   <a href="STUDENT_LAB.md">Follow the learning lab</a> ·
   <a href="reports/index.html">Explore the dashboard source</a>
 </p>
@@ -81,7 +81,7 @@ Companion booklet
 The AI-Native Data Scientist: Building, Testing, and Trusting Inference Systems
 Mirco A. Mannucci · 37 pages · October 2026
 
-[Read the illustrated booklet (PDF)](book/AI-Native-Data-Scientist.pdf) · [LaTeX manuscript](book/main.tex) · [Six-session student lab](STUDENT_LAB.md)
+Read the booklet on ResearchGate · [Repository PDF](book/AI-Native-Data-Scientist.pdf) · [LaTeX manuscript](book/main.tex) · [Six-session student lab](STUDENT_LAB.md)
 
 The booklet and code are meant to be studied together. Instead of presenting AI as a shortcut around mathematics or scientific reasoning, the book develops the skills needed to direct AI-assisted work and detect its failures:
 - Evidence and uncertainty: what is observed, inferred, assumed, or unknown.
