@@ -1,0 +1,26 @@
+{
+  "dataset": "USGS 4.5+ earthquake events, past week (selected records)",
+  "source_url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson",
+  "source_generated_ms": 1793297324000,
+  "source_total_records": 186,
+  "sample_size": 15,
+  "sample_method": "First 15 entries of the USGS feed viewed on 2026-10-29. Selected, NOT representative sample.",
+  "license_note": "USGS government earthquake data; consult USGS data licensing guidance.",
+  "records": [
+    {"id":"us7000ttyw","mag":4.7,"place":"6 km SE of Pitaloza Arriba, Panama","time_ms":1793281377953,"updated_ms":1793283588265,"lon":-80.6309,"lat":7.5923,"depth_km":10,"status":"reviewed","net":"us","nst":35,"gap":133,"rms":0.82},
+    {"id":"us7000ttyk","mag":4.6,"place":"Pulau Pulau Tanimbar, Indonesia","time_ms":1793273904162,"updated_ms":1793277883040,"lon":130.0224,"lat":-7.5288,"depth_km":10,"status":"reviewed","net":"us","nst":43,"gap":78,"rms":0.94},
+    {"id":"us7000ttyd","mag":4.9,"place":"111 km SW of Port-Vila, Vanuatu","time_ms":1793270002424,"updated_ms":1793271352040,"lon":167.6261,"lat":-18.4979,"depth_km":10,"status":"reviewed","net":"us","nst":28,"gap":74,"rms":1.43},
+    {"id":"us7000tty7","mag":5.1,"place":"218 km NNW of Bamboo Flat, India","time_ms":1793263782448,"updated_ms":1793264668040,"lon":91.6593,"lat":13.3785,"depth_km":10,"status":"reviewed","net":"us","nst":74,"gap":61,"rms":0.79},
+    {"id":"us7000tty0","mag":4.6,"place":"41 km W of Mosteiros, Portugal","time_ms":1793260446718,"updated_ms":1793262012040,"lon":-26.2963,"lat":37.9065,"depth_km":10,"status":"reviewed","net":"us","nst":24,"gap":226,"rms":1.11},
+    {"id":"us7000ttxz","mag":6.4,"place":"southeast of Easter Island","time_ms":1793260190928,"updated_ms":1793267727274,"lon":-98.0489,"lat":-36.4058,"depth_km":10,"status":"reviewed","net":"us","nst":83,"gap":39,"rms":1.32},
+    {"id":"us7000ttxn","mag":5.4,"place":"114 km ENE of Barcelona, Philippines","time_ms":1793259090432,"updated_ms":1793266642302,"lon":127.4269,"lat":8.4677,"depth_km":10,"status":"reviewed","net":"us","nst":90,"gap":43,"rms":0.81},
+    {"id":"us7000ttx8","mag":5.1,"place":"Balleny Islands region","time_ms":1793252016298,"updated_ms":1793252972040,"lon":161.1643,"lat":-61.3277,"depth_km":10,"status":"reviewed","net":"us","nst":34,"gap":121,"rms":0.68},
+    {"id":"us7000ttx0","mag":5.4,"place":"South Sandwich Islands region","time_ms":1793250408289,"updated_ms":1793262464209,"lon":-27.9532,"lat":-60.2079,"depth_km":8.561,"status":"reviewed","net":"us","nst":54,"gap":81,"rms":1.2},
+    {"id":"us7000ttw5","mag":5.7,"place":"82 km NE of Kiunga, Papua New Guinea","time_ms":1793244402275,"updated_ms":1793251940468,"lon":141.9018,"lat":-5.6991,"depth_km":10,"status":"reviewed","net":"us","nst":54,"gap":46,"rms":0.95},
+    {"id":"us7000ttw3","mag":5.8,"place":"110 km ENE of Barcelona, Philippines","time_ms":1793243945288,"updated_ms":1793259696352,"lon":127.4204,"lat":8.3638,"depth_km":10,"status":"reviewed","net":"us","nst":145,"gap":26,"rms":0.84},
+    {"id":"us7000ttw2","mag":5.4,"place":"113 km ENE of Barcelona, Philippines","time_ms":1793243874507,"updated_ms":1793251398836,"lon":127.4427,"lat":8.3695,"depth_km":10,"status":"reviewed","net":"us","nst":60,"gap":96,"rms":0.73},
+    {"id":"us7000ttvy","mag":4.8,"place":"36 km SSW of Merizo Village, Guam","time_ms":1793240301049,"updated_ms":1793266895003,"lon":144.5819,"lat":12.9476,"depth_km":70.237,"status":"reviewed","net":"us","nst":29,"gap":83,"rms":0.8},
+    {"id":"us7000ttvs","mag":4.8,"place":"western Indian-Antarctic Ridge","time_ms":1793236024538,"updated_ms":1793236991040,"lon":139.4087,"lat":-50.2688,"depth_km":10,"status":"reviewed","net":"us","nst":25,"gap":84,"rms":0.75},
+    {"id":"us7000ttvn","mag":4.9,"place":"117 km E of Port-Olry, Vanuatu","time_ms":1793235456802,"updated_ms":1793236391040,"lon":168.1637,"lat":-15.0234,"depth_km":10,"status":"reviewed","net":"us","nst":26,"gap":109,"rms":0.74}
+  ]
+}

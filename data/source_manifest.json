@@ -1,0 +1,22 @@
+{
+  "basis": "Frozen first 15 published entries in USGS public GeoJSON feed as retrieved 2026-10-29",
+  "source_generated_ms": 1793297324000,
+  "hash_algorithm": "SHA-256 over canonical selected fields; checksum not cryptographic authenticity",
+  "record_hashes": {
+    "us7000ttyw": "5b87dca955f309a72e80abe5106ed02d6c6818ab4a110d5cff6406679e2918dc",
+    "us7000ttyk": "2f70085fd8096f91f27d9334c8c4bae3f78a6c8bd6b6fec8aa955a4ed6f0e8ad",
+    "us7000ttyd": "e28944ffae7acb0b41d739d18d986057edbfce8770f6009674e68555d1ffe0fd",
+    "us7000tty7": "cb0f3699b2e66025569fa79f28c73e02c2f855ddbf48666911d4f6f101818792",
+    "us7000tty0": "609e34f237ab28bdf2f28da7ff827daa39a5002dab1e675fd713a25e65b8a1ed",
+    "us7000ttxz": "9d1d9d9bddcda86d47da5cb7cc60ea4b0e60cce894bf68550aeb3bd8491dfea6",
+    "us7000ttxn": "6e9c931e811ebb5baec201eb30cac1751a398a66646f0fbfbb3b5fbeb73ca79a",
+    "us7000ttx8": "b95e625f9707d51f4139a7bc7ee29b41640f3a594c6e86b92ad510eff84fd741",
+    "us7000ttx0": "589729e62e5c30bb19457a99afaa1262df2873d459f8df7f9ef4afbd77fcd475",
+    "us7000ttw5": "86038e08bacd34c02a9fd824c80d20c87f65ebf6f2de69210cdd5b5b8fd8c2e1",
+    "us7000ttw3": "e87540443ed322415900f32cd95edbf00fa85b6c8bd5e256e1079c75d9da7553",
+    "us7000ttw2": "fb2134873d38310e580ee09e87fedf8ef9172ac09fe491b21c5233ef519d1c2d",
+    "us7000ttvy": "76f4dae6f7924d3a5adb67eb8c33af0fb5e2e96a170b80f46309cce85f25d300",
+    "us7000ttvs": "752db6380be023a0930f1f299a980bc6cfee90c00c49b8a41b5b22030e812980",
+    "us7000ttvn": "c46b4c1d6b4217a8842de9f550e893d0b09de62e3385fb51313962556f705e10"
+  }
+}
