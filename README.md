@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/OpenInference-logo.png" alt="OpenInference Lab logo" width="550">
+  <img src="assets/OpenInference Lab-Logo.png.png" alt="OpenInference Lab logo" width="550">
 </p>
 
 <h1 align="center">OpenInference Lab</h1>
